@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+uni-page-body {
+  height: 100%;
+}
+.add-account {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+  overflow: auto;
+}
+.add-account .form {
+    padding-top: 30rpx;
+}
+.add-account .form .uni-form-item {
+      height: 120rpx;
+      border-bottom: 1px solid #eee;
+      padding: 0 48rpx;
+      margin-top: 20rpx;
+}
+.add-account .form .uni-form-item .title {
+        height: 50rpx;
+        line-height: 50rpx;
+        font-weight: 500;
+        font-size: 32rpx;
+}
+.add-account .form .uni-form-item .uni-input {
+        height: 70rpx;
+        line-height: 70rpx;
+        font-size: 26rpx;
+}
+.add-account .form .uni-btn-v {
+      position: absolute;
+      bottom: 10rpx;
+      width: 100%;
+}
+.add-account .form .uni-btn-v button {
+        margin-top: 10rpx;
+}
+
