@@ -79,7 +79,7 @@
 				    });
 				    return;
 				}
-		        if (this.password.length < 8) {
+		        if (this.password.length < 6) {
 		            uni.showToast({
 		                icon: 'none',
 						position: 'bottom',
@@ -92,7 +92,7 @@
 					password: this.password
 				}
 				uni.request({
-					url: 'http://192.168.2.72:3000/v1/login',
+					url: '/v1/login',
 					data: data,
 					method: "POST",
 					success: (res) =>{
