@@ -3,35 +3,10 @@
 	
 	export default {
 		created() {
-			// #ifdef APP-PLUS
-			plus.navigator.closeSplashscreen(); 
-			// #endif 
+			
 		},
 		onLaunch: function() {
-			uni.getSystemInfo({
-				success: function(e) {
-					// #ifndef MP
-					Vue.prototype.StatusBar = e.statusBarHeight;
-					if (e.platform == 'android') {
-						Vue.prototype.CustomBar = e.statusBarHeight + 50;
-					} else {
-						Vue.prototype.CustomBar = e.statusBarHeight + 45;
-					};
-					// #endif
-		
-					// #ifdef MP-WEIXIN
-					Vue.prototype.StatusBar = e.statusBarHeight;
-					let custom = wx.getMenuButtonBoundingClientRect();
-					Vue.prototype.Custom = custom;
-					Vue.prototype.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-					// #endif		
-		
-					// #ifdef MP-ALIPAY
-					Vue.prototype.StatusBar = e.statusBarHeight;
-					Vue.prototype.CustomBar = e.statusBarHeight + e.titleBarHeight;
-					// #endif
-				}
-			})
+			
 		},
 		onShow: function() {
 			console.log('App 开启')
@@ -42,10 +17,13 @@
 	}
 </script>
 
-<style >
-
-	body{
-		background: #FFFFFF !important;
-	}
-	
+<style lang="scss">
+// todo 字体引用路径问题待解决
+@font-face {
+  font-family: 'iconfont';
+  src: url('./static/fonts/iconfont.ttf');
+}
+body{
+	background: #FFFFFF !important;
+}
 </style>

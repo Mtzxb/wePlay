@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "账号列表",
-  "usingComponents": {
-    "m-search": "/components/m-search/m-search"
-  }
-}

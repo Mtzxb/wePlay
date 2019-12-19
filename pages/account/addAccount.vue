@@ -1,5 +1,6 @@
 <template>
 	<view class="add-account">
+		<m-my-header title='添加账号' _url="/pages/account/index" openType="switchTab" />
 		<view class="form">
 			<form>
 				<view class="uni-form-item uni-column" v-for="(item,index) in accountFormArr" :key="index">
@@ -13,15 +14,19 @@
 					</view>
 				</view>
 				<view class="uni-btn-v">
-					<button form-type="submit" @click="formSubmit">提交</button>
-					<button type="default" @click="backList">取消</button>
+					<button size="mini" form-type="submit" @click="formSubmit">新增账号</button>
+					<button size="mini" @click="backList">取消</button>
 				</view>
 			</form>
 		</view>
 	</view>
 </template>
 <script>
+	import mMyHeader from '@/components/my-header'
 	export default {
+		components: {
+			mMyHeader
+		},
 		data() {
 			return {
 				accountForm: {
@@ -99,7 +104,7 @@
 		box-sizing: border-box;
 		height: 100%;overflow: auto;
 		.form{
-			padding-top: 30upx;
+			padding-top: 30upx;padding-bottom: 140upx;
 			.uni-form-item{
 				height: 120upx;border-bottom:1px solid #eee;padding: 0 48upx;margin-top: 20upx;
 				.title{
@@ -112,7 +117,7 @@
 			.uni-btn-v{
 				position: absolute;bottom: 10upx;width: 100%;
 				button{
-					margin-top: 10upx
+					margin-top: 10upx;width: 100%;
 				}
 			}
 		}

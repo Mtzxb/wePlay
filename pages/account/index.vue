@@ -58,6 +58,12 @@
 			};
 		},
 		onShow() {
+			var user = uni.getStorageSync('user')
+			// if(!user){
+			// 	uni.navigateTo({
+			// 		url: `/`
+			// 	})
+			// }
 			const res = uni.getSystemInfoSync();
 			this.secondHeight = res.windowHeight;
 			this.findAccount ()

@@ -51,7 +51,9 @@
 	var _this;
 	import wInput from '../../components/watch-login/watch-input.vue' //input
 	import wButton from '../../components/watch-login/watch-button.vue' //button
-	
+	import {
+		mapState, mapMutations
+	} from'vuex'
 	export default {
 		data() {
 			return {
@@ -61,6 +63,34 @@
 				userInfo: {}
 			};
 		},
+		onShow: function() {
+			var value = uni.getStorageSync('user');
+			console.log(value)
+			if(value != undefined && value != ""){
+				var data = {
+					'username': value 
+				}
+				uni.request({
+					url: '/v1',
+					data: data,
+					method: "GET",
+					success: (res) =>{
+						if(res.data && res.data.length > 0){
+							uni.showToast({
+								icon: 'success',
+								position: 'bottom',
+								title: "自动登陆成功！"
+							})
+							setTimeout( ()=>{
+								uni.switchTab({
+								    url: '/pages/home/index'
+								});
+							},1000)
+						}
+					}
+				})
+			}
+		},
 		components:{
 			wInput,
 			wButton,
@@ -68,7 +98,11 @@
 		mounted() {
 			_this= this;
 		},
+		computed: {
+			...mapState(['login'])
+		},
 		methods: {
+			...mapMutations(['Login']),
 		    startLogin(){//登录
 				var reg = /^1[3456789]\d{9}$/
 				if (this.username == " " || !reg.test(this.username)) {
@@ -103,11 +137,9 @@
 							    title: res.data
 							});
 						}else{
-							this.userInfo = JSON.parse(JSON.stringify(res.data))
-							uni.setStorage({
-							    key: 'userInfo',
-							    data: this.userInfo
-							})
+							console.log(res)
+							this.userInfo = res.data[0].username
+							this.Login(this.userInfo);
 							uni.showToast({
 							    icon: 'success',
 								position: 'bottom',

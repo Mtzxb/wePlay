@@ -13,7 +13,8 @@
         },{
 		    "path" : "pages/account/addAccount",
 		    "style" : {
-				"navigationBarTitleText": "新增账号"
+				"navigationBarTitleText": "新增账号",
+				"app-plus":{"bounce":"vertical","titleNView":false}
 			}
 		},{
 		    "path" : "pages/home/index",
@@ -29,11 +30,20 @@
 		}
         ,{
             "path" : "pages/account/upAccount",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "编辑账号",
+				"app-plus":{"bounce":"vertical","titleNView":false}
+			}
         }
         ,{
             "path" : "pages/login/addUser",
             "style" : {}
+        }
+        ,{
+            "path" : "pages/person/person",
+            "style" : {
+				"navigationBarTitleText": "个人中心"
+			}
         }
     ],
 	"tabBar": {
@@ -43,15 +53,18 @@
 	    "backgroundColor": "#ffffff",
 	    "list": [{
 	        "pagePath": "pages/home/index",
-	        "iconPath": "static/logo.png",
-	        "selectedIconPath": "static/logo.png",
-	        "text": "首页"
+	        "iconPath":"static/images/首页.png",
+	        "selectedIconPath": "static/images/首页.png"
 	    }, {
 	        "pagePath": "pages/account/index",
-	        "iconPath": "static/logo.png",
-	        "selectedIconPath": "static/logo.png",
-	        "text": "账号"
-	    }]
+	        "iconPath":"static/images/账号列表.png",
+	        "selectedIconPath": "static/images/账号列表.png"
+	    },
+		{
+		    "pagePath": "pages/person/person",
+		    "iconPath":"static/images/个人中心.png",
+		    "selectedIconPath": "static/images/个人中心.png"
+		}]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

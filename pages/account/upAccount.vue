@@ -1,5 +1,6 @@
 <template>
 	<view class="add-account">
+		<m-my-header title='修改账号信息' _url="/pages/account/index" openType="switchTab" />
 		<view class="form">
 			<form>
 				<view class="uni-form-item uni-column" v-for="(item,index) in accountFormArr" :key="index">
@@ -13,17 +14,23 @@
 					</view>
 				</view>
 				<view class="uni-btn-v">
-					<button form-type="submit" @click="formSubmit">提交</button>
-					<button type="default" @click="backList">取消</button>
+					<button size="mini" form-type="submit" @click="formSubmit">修改账号</button>
+					<button size="mini" form-type="submit" @click="deleteAcc">删除账号</button>
+					<button size="mini" @click="backList">取消</button>
 				</view>
 			</form>
 		</view>
 	</view>
 </template>
 <script>
+	import mMyHeader from '@/components/my-header'
 	export default {
+		components: {
+			mMyHeader
+		},
 		data() {
 			return {
+				this_id: -1,
 				accountForm: {
 					accountname: '',
 					account: '',
@@ -44,6 +51,7 @@
 			}
 		},
 		onLoad (option) {
+			this.this_id = option.id
 			this.axios.get('/v1/findAccount',{params:option}).then( res => {
 				if(res.data.length == 1){
 					this.accountForm = res.data[0]
@@ -82,10 +90,37 @@
 					}
 				})
 			},
+			deleteAcc () {
+				var accId = this.this_id
+				uni.showModal({
+				    title: '删除确认',
+				    content: '确定删除该账号吗？删除后将无法恢复！',
+				    success: function (res) {
+				        if (res.confirm) {
+							this.axios.get('/v1/deleteAccount?id=' + accId).then(res => {
+								if(res.data == "删除成功"){
+									uni.showToast({
+									  icon: 'none',
+									  title: res.data
+									})
+									setTimeout(() => {
+										uni.hideToast()
+										uni.switchTab({
+										    url: '/pages/account/index'
+										})
+									},1000)
+								}
+							})
+				        } else if (res.cancel) {
+				            
+				        }
+				    }
+				})
+			},
 			backList () {
-				uni.navigateBack({
-				    delta: 1
-				});
+				uni.switchTab({
+				    url: '/pages/account/index'
+				})
 			},
 			changeOnlie (e) {
 				if (this.accountForm.isOnline==0){
@@ -104,7 +139,7 @@
 		box-sizing: border-box;
 		height: 100%;overflow: auto;
 		.form{
-			padding-top: 30upx;
+			padding-top: 10upx;padding-bottom: 180upx;
 			.uni-form-item{
 				height: 120upx;border-bottom:1px solid #eee;padding: 0 48upx;margin-top: 20upx;
 				.title{
@@ -117,7 +152,7 @@
 			.uni-btn-v{
 				position: absolute;bottom: 10upx;width: 100%;
 				button{
-					margin-top: 10upx
+					margin-top: 10upx;width: 100%;
 				}
 			}
 		}
